@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shopping Cart</title>
+    <style>
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .cart-item img {
+            width: 50px; /* Set the image width to make it smaller (adjust as needed) */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <section id="header"></section>
+     <nav class="navbar">
+  
+        <div>
+     <ul id="navbar">
+        <li><a href="vendorsignup.html">Become a vendor</a></li>
+        <li><a href="shareorder.html">Share an order</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="Vegetables.html">Vegetables</a></li>
+        <li><a href="fruit2.html">Fruits</a></li>
+        <li><a href="MeatEggs.html">Meat & Eggs</a></li>
+        <li><a href="spices.html">Spices</a></li>
+        <li><a href="about.html">About Us</a></li>
+  
+        
+     </nav>
+  
+     </ul>
+     </div>
+
+     <title>Fresh Supply- Online Food & Grocery Delivery Service</title>
+     <img src="images/deliverease banner.jpg" class="Banner" height="100%" width="100%"
+     <link rel="stylesheet" href="styles.css">
+    <h1>Your Shopping Cart</h1>
+    <ul id="cart-items">
+        <!-- Cart items will be displayed here using JavaScript -->
+    </ul>
+
+    <div id="total-section">
+        <h2>Total Price: $<span id="cart-total">0.00</span></h2>
+    </div>
+
+    <button onclick="deleteAllItems()">Delete All Items</button>
+
+    <!-- Add the "Copy Order" button -->
+    
+
+    <!-- Add the "Send Order via WhatsApp" button -->
+    <button onclick="sendOrderViaWhatsApp()">Send Us Your Order via WhatsApp</button>
+
+    <script>
+        // Function to parse query parameters from the URL
+        function getQueryParams() {
+            const queryParams = new URLSearchParams(window.location.search);
+            const params = {};
+            for (const [key, value] of queryParams) {
+                if (!params[key]) {
+                    params[key] = [];
+                }
+                params[key].push(value);
+            }
+            return params;
+        }
+
+        // Remove an item from the cart
+        function removeItem(productName) {
+            const params = getQueryParams();
+
+            // Create new arrays to store updated cart information
+            const updatedProductNames = [];
+            const updatedProductPrices = [];
+            const updatedQuantities = [];
+
+            // Iterate through the products in the cart
+            for (let i = 0; i < params.productName.length; i++) {
+                if (params.productName[i] !== productName) {
+                    // If the product name doesn't match the one to be removed, keep it
+                    updatedProductNames.push(params.productName[i]);
+                    updatedProductPrices.push(params.productPrice[i]);
+                    updatedQuantities.push(params.quantity[i]);
+                }
+            }
+
+            // Update the query parameters with the updated cart information
+            const updatedParams = {
+                productName: updatedProductNames,
+                productPrice: updatedProductPrices,
+                quantity: updatedQuantities,
+            };
+
+            // Build the new URL with the updated cart information
+            const searchParams = new URLSearchParams(updatedParams);
+            const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+
+            // Redirect to the updated URL
+            window.location.href = newUrl;
+        }
+
+        // Function to delete all items from the cart
+        function deleteAllItems() {
+            const cartItemsList = document.getElementById('cart-items');
+            cartItemsList.innerHTML = ''; // Clear the cart items
+        }
+
+        // Retrieve and display cart items
+        function displayCartItems() {
+            const cartItemsList = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const params = getQueryParams();
+            let total = 0;
+
+            if (!params.productName) {
+                const emptyCartMessage = document.createElement('p');
+                emptyCartMessage.textContent = 'Your cart is empty.';
+                cartItemsList.appendChild(emptyCartMessage);
+            } else {
+                const numProducts = params.productName.length;
+
+                for (let i = 0; i < numProducts; i++) {
+                    const productName = decodeURIComponent(params.productName[i]);
+                    const productPrice = parseFloat(params.productPrice[i]);
+                    const quantity = parseInt(params.quantity[i]);
+                    const totalProductPrice = productPrice * quantity;
+
+                    total += totalProductPrice;
+
+                    const cartItem = document.createElement('li');
+                    cartItem.className = 'cart-item';
+
+                    // Create an image element and set its attributes
+                    const productImage = document.createElement('img');
+                    productImage.src = 'images/' + productName + '.jpg'; // Set the image source
+                    productImage.alt = productName; // Set the alt text
+                    productImage.width = 50; // Set the image width (adjust as needed)
+                    cartItem.appendChild(productImage);
+
+                    const itemDetails = document.createElement('span');
+                    itemDetails.textContent = `${productName} - $${totalProductPrice.toFixed(2)} (Quantity: ${quantity})`;
+                    cartItem.appendChild(itemDetails);
+
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Remove This Item';
+                    removeButton.onclick = function () {
+                        removeItem(productName);
+                        cartItem.remove(); // Remove the item from the cart display
+                        updateTotal(); // Update the total after removal
+                    };
+                    cartItem.appendChild(removeButton);
+
+                    cartItemsList.appendChild(cartItem);
+                }
+            }
+
+            // Set the total in the total element
+            cartTotal.textContent = total.toFixed(2);
+        }
+
+        // Function to update the total after item removal
+        function updateTotal() {
+            const cartItemsList = document.getElementById('cart-items');
+            const cartItems = cartItemsList.getElementsByClassName('cart-item');
+            let total = 0;
+
+            for (let i = 0; i < cartItems.length; i++) {
+                const itemDetails = cartItems[i].querySelector('span').textContent;
+                const itemPrice = parseFloat(itemDetails.split('$')[1]);
+                total += itemPrice;
+            }
+
+            const cartTotal = document.getElementById('cart-total');
+            cartTotal.textContent = total.toFixed(2);
+        }
+
+        // Call the function to display cart items
+        displayCartItems();
+
+        // Function to copy order details to clipboard
+        function copyOrderToClipboard() {
+            const orderText = getOrderDetails(); // Replace with a function to retrieve order details
+            const textArea = document.createElement("textarea");
+            textArea.value = orderText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            alert("Order details copied to clipboard!");
+        }
+
+        // Function to retrieve order details (replace with your actual logic)
+        function getOrderDetails() {
+            // Retrieve order details from the displayed cart items
+            const cartItems = document.querySelectorAll('.cart-item');
+            let orderText = '';
+
+            cartItems.forEach((cartItem, index) => {
+                const itemDetails = cartItem.querySelector('span').textContent;
+                orderText += `${index + 1}. ${itemDetails}\n`;
+            });
+
+            return orderText;
+        }
+
+        // Function to send the order details via WhatsApp
+        function sendOrderViaWhatsApp() {
+            const cartItemsList = document.getElementById('cart-items');
+            const cartItems = cartItemsList.getElementsByClassName('cart-item');
+            let orderMessage = 'Hi, I would like to buy:\n';
+
+            if (cartItems.length === 0) {
+                orderMessage += 'No items in the cart.';
+            } else {
+                for (let i = 0; i < cartItems.length; i++) {
+                    const itemDetails = cartItems[i].querySelector('span').textContent;
+                    orderMessage += `${i + 1}. ${itemDetails}\n`;
+                }
+            }
+
+            // Encode the order message for WhatsApp
+            const encodedMessage = encodeURIComponent(orderMessage);
+
+            // Replace '254787697420' with your actual WhatsApp number
+            const whatsappNumber = '254787697420';
+
+            // Construct the WhatsApp URL to open the profile
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+
+            // Open WhatsApp with the order message
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>

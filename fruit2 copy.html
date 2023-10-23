@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blissful Cereals</title>
+    <style>
+        /* Style for the product container */
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        /* Style for each product */
+        .product {
+            width: calc(23.33% - 20px); /* Three products per row */
+              margin: 20px 0;
+              padding: 20px;
+              border: 1px solid #ddd;
+              border-radius: 10px;
+              background-color: whitesmoke;
+              text-align: center;
+              text-decoration: none; /* Remove underline for anchor links */
+              color: #333; /* Text color */
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            font-size: 18px;
+        }
+
+        .product p {
+            margin: 1px 0;
+        }
+
+        .quantity-adjust {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        .cart-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px; /* Reduced font size for cart button */
+        }
+
+        /* View Cart button styling */
+        #view-cart-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body> 
+    <section id="header"></section>
+    <a href="#"> <img src="images/Fresh Supply Logo-2@1x_2.jpg" class="logo" height="100" width="100"></a>
+    <nav class="navbar">
+ 
+       <div>
+    <ul id="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="Vegetables.html">Vegetables</a></li>
+        <li><a href="fruit2.html">Fruits</a></li>
+        <li><a href="MeatEggs.html">Meat & Eggs</a></li>
+        <li><a href="spices.html">Spices</a></li>
+ 
+       
+    </nav>
+ 
+    </ul>
+    </div>
+
+    <title>Fresh Supply- Online Food & Grocery Delivery Service</title>
+    <img src="images/Fruits banner.jpg" class="Banner" height="100%" width="100%"
+    <link rel="stylesheet" href="styles.css">
+ 
+ <head>
+    
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Curvy Search Bar</title>
+     <style>
+         /* Style for the search bar */
+         .search-container {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             margin-top: 20px;
+         }
+ 
+         .search-input {
+             border: 2px solid #ccc;
+             border-radius: 20px; /* Rounded corners */
+             padding: 10px;
+             width: 600px;
+             outline: none;
+         }
+ 
+         .search-button {
+             background-color: #00A619;
+             color: white;
+             border: none;
+             border-radius: 20px; /* Rounded corners */
+             padding: 10px 20px;
+             margin-left: 10px;
+             cursor: pointer;
+         }
+ 
+         /* Add additional styles as needed */
+     </style>
+ </head>
+ 
+ 
+ 
+ <body>
+     <div class="search-container">
+         <input type="text" class="search-input" placeholder="Search...">
+         <button class="search-button">Search</button>
+     </div>
+ </body>
+ </html>
+<body>
+
+    <!-- Product Container -->
+    <div class="product-container">
+        <!-- Product 1 -->
+        <div class="product" id="product1">
+            <img src="images/Fruits/apples green.jpg" alt="Product 1">
+            <h3>Githeri</h3>
+            <p>Carefully selected, sweet green apples</p>
+            <p>Price: Ksh. 30.00</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product1', 'increment')">+</button>
+                <span id="quantity-product1">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product1', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Apples(Green)', 30.00, 'quantity-product1')">Add to Cart</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product" id="product2">
+            <img src="images/Fruits/apples red.jpg" alt="Product 2">
+            <h3>Yellow beans</h3>
+            <p>Sweet red apples</p>
+            <p>Price: Ksh. 30</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product2', 'increment')">+</button>
+                <span id="quantity-product2">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product2', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Apples(red)', 30.00, 'quantity-product2')">Add to Cart</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product" id="product3">
+            <img src="images/Fruits/Avocado.jpg" alt="product 3">
+            <h3>Kamande</h3>
+            <p>Large & carefully selected Avocados</p>
+            <p>Price: Ksh. 60</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product3', 'increment')">+</button>
+                <span id="quantity-product3">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product3', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Avocado', 60.00, 'quantity-product3')">Add to Cart</button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product" id="product4">
+            <img src="images/Fruits/Bananas.jpg" alt="product 4">
+            <h3>Ndengu</h3>
+            <p>Fresh, large and organic bananas.</p>
+            <p>Price: Ksh. 120</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product4', 'increment')">+</button>
+                <span id="quantity-product4">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product4', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Bananas', 120.00, 'quantity-product4')">Add to Cart</button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product" id="product5">
+            <img src="images/Fruits/Coconut.jpg" alt="product 5">
+            <h3>Minji</h3>
+            <p>Fresh, large coconuts from Mombasa.</p>
+            <p>Price: Ksh. 70</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product5', 'increment')">+</button>
+                <span id="quantity-product5">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product5', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Coconut', 70.00, 'quantity-product5')">Add to Cart</button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product" id="product6">
+            <img src="images/Fruits/Black grapes.jpg" alt="product 6">
+            <h3>Njahi</h3>
+            <p>500g of locally grown Black grapes</p>
+            <p>Price: Ksh. 300</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product6', 'increment')">+</button>
+                <span id="quantity-product6">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product6', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Black Grapes 500g', 300.00, 'quantity-product6')">Add to Cart</button>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product" id="product7">
+            <img src="images/Fruits/green grapes.jpg" alt="product 7">
+            <h3>Cowpeas</h3>
+            <p>500g of locally grown green grapes</p>
+            <p>Price: Ksh. 300</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product7', 'increment')">+</button>
+                <span id="quantity-product7">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product7', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Green Grapes 500g', 300.00, 'quantity-product7')">Add to Cart</button>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product" id="product8">
+            <img src="images/Fruits/red grapes.jpg" alt="product 8">
+            <h3>Butter beans</h3>
+            <p>500g of locally grown red grapes</p>
+            <p>Price: Ksh. 300</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product8', 'increment')">+</button>
+                <span id="quantity-product8">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product8', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Red Grapes 500g', 300.00, 'quantity-product8')">Add to Cart</button>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="product" id="product9">
+            <img src="images/Fruits/lemon.jpg" alt="product 9">
+            <h3>Chick peas</h3>
+            <p>500g of locally grown lemons (Approx 7 pieces)</p>
+            <p>Price: Ksh. 80</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product9', 'increment')">+</button>
+                <span id="quantity-product9">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product9', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Organic Lemons 500g', 80.00, 'quantity-product9')">Add to Cart</button>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product" id="product10">
+            <img src="images/Fruits/lime.jpg" alt="product 10">
+            <h3>Nyayo beans</h3>
+            <p>500g of locally grown Lime. Approx 7 pieces</p>
+            <p>Price: Ksh. 90</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product10', 'increment')">+</button>
+                <span id="quantity-product10">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product10', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Lime 500g', 90.00, 'quantity-product10')">Add to Cart</button>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product" id="product11">
+            <img src="images/Fruits/mango.jpg" alt="product 11">
+            <h3>Rosecoco beans</h3>
+            <p>Fresh, large and juicy mangoes from Ukambani.</p>
+            <p>Price: Ksh. 50</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product11', 'increment')">+</button>
+                <span id="quantity-product11">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product11', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Mangoes', 50.00, 'quantity-product11')">Add to Cart</button>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product" id="product12">
+            <img src="images/Fruits/orange.jpg" alt="product 12">
+            <h3>Wairimu beans</h3>
+            <p>Large & juicy oranges.</p>
+            <p>Price: Ksh. 20</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product12', 'increment')">+</button>
+                <span id="quantity-product12">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product12', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Oranges', 20.00, 'quantity-product12')">Add to Cart</button>
+        </div>
+
+        <!-- Product 13 -->
+        <div class="product" id="product13">
+            <img src="images/Fruits/pawpaw.jpg" alt="product 13">
+            <h3>Mbaazi</h3>
+            <p>Approx 1kg</p>
+            <p>Price: Ksh. 150</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product13', 'increment')">+</button>
+                <span id="quantity-product13">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product13', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Pawpaw', 150.00, 'quantity-product13')">Add to Cart</button>
+        </div>
+
+        <!-- Product 14 -->
+        <div class="product" id="product14">
+            <img src="images/Fruits/Passion fruit.jpg" alt="product 14">
+            <h3>Soft maize</h3>
+            <p>Locally grown black passion fruits</p>
+            <p>Price: Ksh. 150</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product14', 'increment')">+</button>
+                <span id="quantity-product14">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product14', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Black Passionfruit', 150.00, 'quantity-product14')">Add to Cart</button>
+        </div>
+
+        <!-- Product 15 -->
+        <div class="product" id="product15">
+            <img src="images/Fruits/pineapple.jpg" alt="product 15">
+            <h3>Boiled Sweet potatoes</h3>
+            <p>Large & locally grown in Thika</p>
+            <p>Price: Ksh. 120</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product15', 'increment')">+</button>
+                <span id="quantity-product15">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product15', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Pineapple', 120.00, 'quantity-product15')">Add to Cart</button>
+        </div>
+
+        <!-- Product 16 -->
+        <div class="product" id="product16">
+            <img src="images/Fruits/strawberries.jpg" alt="product 16">
+            <h3>Boiled Nduma</h3>
+            <p>Price: Ksh. 350</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product16', 'increment')">+</button>
+                <span id="quantity-product16">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product16', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Strawberries', 350.00, 'quantity-product16')">Add to Cart</button>
+        </div>
+
+        <!-- Product 17 -->
+        <div class="product" id="product17">
+            <img src="images/Fruits/Pomegranate Arils.jpg" alt="product 17">
+            <h3>Boiled Mhogo</h3>
+            <p>Price: Ksh. 250</p>
+            <div class="quantity-adjust">
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product17', 'increment')">+</button>
+                <span id="quantity-product17">0</span>
+                <button class="quantity-button" onclick="adjustQuantity('quantity-product17', 'decrement')">-</button>
+            </div>
+            <button class="cart-button" onclick="addToCart('Pomegranate Arils-125g', 250.00, 'quantity-product17')">Add to Cart</button>
+        </div>
+
+        
+
+    <!-- View Cart button -->
+    <button id="view-cart-button" onclick="viewCart()">View Cart</button>
+
+    <script>
+        const cart = []; // Initialize an empty cart
+
+        function addToCart(productName, productPrice, quantityElementId) {
+            const quantity = parseInt(document.getElementById(quantityElementId).textContent);
+
+            if (quantity > 0) {
+                cart.push({
+                    productName: productName,
+                    productPrice: productPrice,
+                    quantity: quantity
+                });
+
+                alert('Product added to cart.');
+            }
+        }
+
+        function adjustQuantity(quantityElementId, action) {
+            const quantitySpan = document.getElementById(quantityElementId);
+            let quantity = parseInt(quantitySpan.textContent);
+
+            if (action === 'increment') {
+                quantity++;
+            } else if (action === 'decrement' && quantity > 0) {
+                quantity--;
+            }
+
+            quantitySpan.textContent = quantity;
+        }
+
+        function viewCart() {
+            if (cart.length > 0) {
+                const cartParams = cart.map(product => {
+                    return `productName=${encodeURIComponent(product.productName)}&productPrice=${product.productPrice}&quantity=${product.quantity}`;
+                });
+
+                const cartUrl = `cart.html?${cartParams.join('&')}`;
+                window.location.href = cartUrl;
+            } else {
+                alert('Your cart is empty. Select products to add to your cart.');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include necessary meta tags, CSS, and other resources -->
+    <title>Checkout</title>
+</head>
+<body>
+    <h1>Checkout</h1>
+    
+    <h2>Your Order:</h2>
+    <ul id="order-items">
+        <!-- Order items will be displayed here using JavaScript -->
+    </ul>
+
+    <h2>Total Price: $<span id="total-price">0.00</span></h2>
+    
+    <button onclick="cancelOrder()">Cancel Order</button>
+
+    <!-- Add the "Copy Order" button -->
+    <button id="copy-order-button">Copy Order</button>
+
+    <!-- Add the "Send Order via WhatsApp" button -->
+    <button onclick="sendOrderViaWhatsApp()">Send Order via WhatsApp</button>
+
+    <script>
+        // Function to parse query parameters from the URL
+        function getQueryParams() {
+            const queryParams = new URLSearchParams(window.location.search);
+            const params = {};
+            for (const [key, value] of queryParams) {
+                if (!params[key]) {
+                    params[key] = [];
+                }
+                params[key].push(value);
+            }
+            return params;
+        }
+
+        // Function to display the order items and total price
+        function displayOrderItems() {
+            const orderItemsList = document.getElementById('order-items');
+            const totalPriceElement = document.getElementById('total-price');
+            const params = getQueryParams();
+            let totalPrice = 0; // Initialize the total price
+
+            if (!params.productName || !params.productPrice || !params.quantity) {
+                // Display a message if there are no order details available
+                const noOrderMessage = document.createElement('p');
+                noOrderMessage.textContent = 'No order details available.';
+                orderItemsList.appendChild(noOrderMessage);
+            } else {
+                // Determine the number of products in the order
+                const numProducts = params.productName.length;
+
+                // Iterate through the order details and display them
+                for (let i = 0; i < numProducts; i++) {
+                    const productName = decodeURIComponent(params.productName[i]);
+                    const productPrice = parseFloat(params.productPrice[i]);
+                    const quantity = parseInt(params.quantity[i]);
+                    const totalProductPrice = productPrice * quantity;
+
+                    totalPrice += totalProductPrice; // Add the total price of the current item to the total
+
+                    const orderItem = document.createElement('li');
+                    orderItem.textContent = `${productName} - $${totalProductPrice.toFixed(2)} (Quantity: ${quantity})`;
+                    orderItemsList.appendChild(orderItem);
+                }
+            }
+
+            // Set the total price in the total price element
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+
+        // Call the function to display order items
+        displayOrderItems();
+
+        // Function to cancel the order (clear query parameters and go back to cart)
+        function cancelOrder() {
+            // Clear the query parameters
+            history.replaceState(null, null, 'cart.html');
+            
+            // Redirect back to the cart page
+            window.location.href = 'cart.html';
+        }
+
+        // Function to send the order details via WhatsApp
+        function sendOrderViaWhatsApp() {
+            // Retrieve the order details from the query parameters
+            const params = getQueryParams();
+            let orderMessage = 'My Order:\n';
+
+            if (params.productName) {
+                const numProducts = params.productName.length;
+
+                for (let i = 0; i < numProducts; i++) {
+                    const productName = decodeURIComponent(params.productName[i]);
+                    const quantity = parseInt(params.quantity[i]);
+
+                    orderMessage += `${productName} - Quantity: ${quantity}\n`;
+                }
+            } else {
+                orderMessage += 'No items in the order.';
+            }
+
+            // Encode the order message for WhatsApp
+            const encodedMessage = encodeURIComponent(orderMessage);
+
+            // Replace '254787697420' with your actual WhatsApp number
+            const whatsappNumber = '254787697420';
+
+            // Construct the WhatsApp URL to open the profile
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+
+            // Open WhatsApp with the order message
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Function to copy order details to clipboard
+        function copyOrderToClipboard() {
+            const orderText = getOrderDetails(); // Replace with a function to retrieve order details
+            const textArea = document.createElement("textarea");
+            textArea.value = orderText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            alert("Order details copied to clipboard!");
+        }
+
+        // Add a click event listener to the "Copy Order" button
+        const copyOrderButton = document.getElementById("copy-order-button");
+        copyOrderButton.addEventListener("click", copyOrderToClipboard);
+
+        // Function to retrieve order details (replace with your actual logic)
+        function getOrderDetails() {
+            // Replace this with the logic to retrieve order details from your page
+            return "Order details go here.";
+        }
+    </script>
+</body>
+</html>
